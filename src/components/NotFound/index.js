@@ -1,7 +1,7 @@
 import Header from '../Header'
 
 import {
-  NotFoundCard,
+  NotFoundContainer,
   NotFoundImage,
   NotFoundHeading,
   NotFoundInfo,
@@ -10,16 +10,16 @@ import {
 const NotFound = () => (
   <>
     <Header />
-    <NotFoundCard>
+    <NotFoundContainer>
       <NotFoundImage
-        src="https://assets.ccbp.in/frontend/react-js/tech-era/not-found-img.png "
-        alt="not found"
+        src="https://assets.ccbp.in/frontend/react-js/tech-era/not-found-img.png"
+        alt="website logo"
       />
-      <NotFoundHeading>Page Not found</NotFoundHeading>
+      <NotFoundHeading>Page Not Found </NotFoundHeading>
       <NotFoundInfo>
         We are sorry, the page you requested could not be found
       </NotFoundInfo>
-    </NotFoundCard>
+    </NotFoundContainer>
   </>
 )
 

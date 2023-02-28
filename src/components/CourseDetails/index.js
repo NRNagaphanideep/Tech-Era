@@ -98,7 +98,7 @@ class CourseDetails extends Component {
   }
 
   renderLoader = () => (
-    <LoaderContainer data-testid="loader">
+    <LoaderContainer testid="loader">
       <Loader type="ThreeDots" color="#00BFFF" height={50} width={50} />
     </LoaderContainer>
   )

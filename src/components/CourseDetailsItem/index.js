@@ -1,10 +1,10 @@
 import {
   CourseDetailsCard,
+  CourseDetailsContainer,
   CourseDetailsImage,
   CourseDetailsTitle,
   CourseDetailsInfo,
   CourseInfoContainer,
-  CourseDetailsContainer,
 } from './styledComponents'
 
 const CourseDetailsItem = props => {

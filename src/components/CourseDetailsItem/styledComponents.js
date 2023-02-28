@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const CourseDetailsCard = styled.li`
-  list-style-type: none;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  list-style-type: none;
   padding: 0;
 `
 
@@ -12,9 +12,9 @@ export const CourseDetailsContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 95%;
-  margin-left: 40px;
-  margin-right: 60px;
+  margin-bottom: 60px;
   margin-top: 60px;
+  margin-left: 40px;
   box-shadow: 2px 2px 2px #e8e8e8;
 `
 
@@ -27,15 +27,15 @@ export const CourseDetailsImage = styled.img`
 export const CourseDetailsTitle = styled.h1`
   color: #475569;
   font-family: 'Roboto';
-  font-weight: bold;
   font-size: 32px;
+  font-weight: bold;
 `
 
 export const CourseDetailsInfo = styled.p`
   color: #64748b;
   font-family: 'Roboto';
-  font-weight: 400;
   font-size: 22px;
+  font-weight: 400;
   line-height: 35px;
 `
 
