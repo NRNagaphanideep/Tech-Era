@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import CourseDetailsItem from '../CourseDetailsItem'
+import CourseDetailsItem from '../CourseDetailsltem'
 import Header from '../Header'
 
 import {
@@ -98,7 +98,7 @@ class CourseDetails extends Component {
   }
 
   renderLoader = () => (
-    <LoaderContainer testid="loader">
+    <LoaderContainer data-testid="loader">
       <Loader type="ThreeDots" color="#00BFFF" height={50} width={50} />
     </LoaderContainer>
   )

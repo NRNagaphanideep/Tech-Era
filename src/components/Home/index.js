@@ -14,7 +14,7 @@ import {
   CoursesListContainer,
   Heading,
   LoaderContainer,
-} from './styledComponents'
+} from './styledComponent'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -100,7 +100,7 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <LoaderContainer testid="loader">
+    <LoaderContainer data-testid="loader">
       <Loader type="ThreeDots" color="#00BFFF" height={50} width={50} />
     </LoaderContainer>
   )

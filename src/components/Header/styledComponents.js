@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const NavbarHeader = styled.div`
-  background-color: #e8e8e8;
+export const NavHeader = styled.div`
+  background-color: #f1f5f9;
 `
 
 export const WebsiteLogo = styled.img`
