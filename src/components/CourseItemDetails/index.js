@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
-import CourseItem from '../CourseItem'
 import './index.css'
 
 const apiStatusConstants = {
@@ -11,60 +10,67 @@ const apiStatusConstants = {
   failure: 'FAILURE',
 }
 
-class Home extends Component {
-  state = {apiStatus: apiStatusConstants.initial, courseData: []}
+class CourseItemDetails extends Component {
+  state = {itemDetails: {}, apiStatus: apiStatusConstants.initial}
 
   componentDidMount() {
-    this.getCoursesData()
+    this.getItemData()
   }
 
-  getCoursesData = async () => {
+  getItemData = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
 
-    const apiUrl = 'https://apis.ccbp.in/te/courses'
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
 
+    const apiUrl = `https://apis.ccbp.in/te/courses/${id}`
     const response = await fetch(apiUrl)
 
     if (response.ok) {
       const fetchedData = await response.json()
-
-      const updatedData = fetchedData.courses.map(eachCourse => ({
-        id: eachCourse.id,
-        name: eachCourse.name,
-        logoUrl: eachCourse.logo_url,
-      }))
-
+      const updatedDate = {
+        id: fetchedData.course_details.id,
+        name: fetchedData.course_details.name,
+        imageUrl: fetchedData.course_details.image_url,
+        description: fetchedData.course_details.description,
+      }
       this.setState({
+        itemDetails: updatedDate,
         apiStatus: apiStatusConstants.success,
-        courseData: updatedData,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
-  renderCourses = () => {
-    const {courseData} = this.state
+  renderCoursesItem = () => {
+    const {itemDetails} = this.state
     return (
-      <div className="courses-container">
-        <h1 className="courses-heading">Courses</h1>
-        <ul className="course-container">
-          {courseData.map(eachCourse => (
-            <CourseItem eachCourse={eachCourse} key={eachCourse.id} />
-          ))}
-        </ul>
+      <div className="item-container">
+        <div className="image-text-container">
+          <img
+            src={itemDetails.imageUrl}
+            alt={itemDetails.name}
+            className="item-size"
+          />
+          <div className="text-container">
+            <h1 className="item-heading">{itemDetails.name}</h1>
+            <p className="item-para">{itemDetails.description}</p>
+          </div>
+        </div>
       </div>
     )
   }
 
-  renderLoader = () => (
+  renderLoading = () => (
     <div data-testid="loader" className="loader">
       <Loader type="ThreeDots" color="#00BFFF" height={50} width={50} />
     </div>
   )
 
   onClickRetry = () => {
-    this.getCoursesData()
+    this.getItemData()
   }
 
   renderFailure = () => (
@@ -84,15 +90,15 @@ class Home extends Component {
     </div>
   )
 
-  renderApiStatus = () => {
+  renderApiStatusItem = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderCourses()
+        return this.renderCoursesItem()
       case apiStatusConstants.failure:
         return this.renderFailure()
       case apiStatusConstants.inProgress:
-        return this.renderLoader()
+        return this.renderLoading()
       default:
         return null
     }
@@ -100,12 +106,13 @@ class Home extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <Header />
-        <div className="main-container">{this.renderApiStatus()}</div>
-      </>
+        <div className="ItemDetailsMainContainer">
+          {this.renderApiStatusItem()}
+        </div>
+      </div>
     )
   }
 }
-
-export default Home
+export default CourseItemDetails
